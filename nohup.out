@@ -25,3 +25,16 @@ hello
 HTTP/1.1 |@| invalid requested path HTTP/1.1
 hello
 / |@| hello
+/ |@| hello
+/ |@| hello
+/ |@| hello
+/ |@| hello
+/ |@| hello
+ |@| invalid requested path 
+hello
+/ |@| hello
+/ |@| hello
+/systembc/password.php |@| invalid requested path /systembc/password.php
+hello
+/ |@| hello
+/ |@| hello
