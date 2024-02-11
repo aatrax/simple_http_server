@@ -5,7 +5,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <iostream>
-
+#include <dirent.h>
 void server::startsvr()
 {
     int server_fd, new_socket;
@@ -51,10 +51,10 @@ void server::startsvr()
             exit(EXIT_FAILURE);
         }
         recv(new_socket,buff,BUFFSIZE,0);
-        std::cout<<buff<<std::endl;
         std::istringstream req_stm(buff);
         std::string req_mtd,req_pth,req_ptc;
         req_stm>>req_mtd>>req_pth>>req_ptc;
+        std::cout<<req_pth<<" |@| ";
         rtnhtml(req_pth,new_socket);
         close(new_socket);
     }
@@ -92,5 +92,20 @@ void server::addpath(const std::string &req_path,const std::string &nat_path)
 
 void server::addfolder(const std::string &req_path,const std::string &nat_path)
 {
-    
+    //const char* directoryPath = nat_path;
+
+    // 打开目录
+    DIR* directory = opendir(nat_path.c_str());
+    if (directory == nullptr) {
+        std::cerr << "Error opening directory." << std::endl;
+        return ;
+    }
+
+    // 遍历目录中的文件
+    struct dirent* entry;
+    while ((entry = readdir(directory)) != nullptr) {
+        if (entry->d_type == DT_REG) {
+            // 如果是普通文件，输出文件名
+            this->addpath(req_path + std::string(entry->d_name), nat_path+std::string(entry->d_name));        }
+    }
 }
