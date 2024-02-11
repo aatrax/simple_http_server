@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dislike</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('horror.gif'); /* 替换 'background.jpg' 为你的背景图片路径 */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* 让背景铺满整个屏幕 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #blackbird{
+            position: fixed;
+            top: 0px;
+            right: 250px;
+            font-size: 30px;
+        }
+        #blackdialog {
+            position: fixed;
+            top: 40px;
+            right: 200px;
+            width: 150px;
+            height: 55px;
+            padding-top: 20px;
+            background-color: #b7dfe3;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            font-size: 15px;
+            display: none; /* 初始隐藏 */
+            text-align: center;
+        }
+        /* 如果你想要添加自定义样式，可以在这里添加 */
+    </style>
+</head>
+<body>
+    <!-- 这里是你的内容，你可以在这里添加其他元素或文本 -->
+    <img id="blackbird" src="static_blackbird.gif">
+    <div id="blackdialog"></div>
+    <script>
+        let num=0;//说话次数
+        let idint;
+        dialog=document.querySelector('#blackdialog');
+        idint=setInterval(function(){
+            dialog.style.display='inline';
+            if(num==0){
+                dialog.innerHTML='我不喜欢你那个数字，我很生气';
+                num++;
+                return;
+            }
+            if(num==1){
+                dialog.innerHTML='他是因你而死，因为你惹我生气肢解了他';
+                num++;
+                return;
+            }
+            if(num==2){
+                dialog.innerHTML='哈哈哈哈，你个杀人犯';
+                num++;
+                return;
+            }
+            if(num==3){
+                dialog.style.display='none';
+                clearInterval(idint);
+                num++;
+                return;
+            }
+        },4000)
+    </script>
+</body>
+</html>

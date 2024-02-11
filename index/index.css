@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-image: url('bluesky.jpg'); /* 替换 'your-image.jpg' 为实际图片路径 */
+    background-repeat: no-repeat; /* 不重复平铺 */
+    background-position: center top; /* 居中对齐 */
+    background-size: cover;
+}
+header {
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: large;
+    text-align: center;
+    padding: 20px;
+}
+.choicebox{
+    text-align: left;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+.choice{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f1f1f1;
+    color: #333;
+    text-decoration: none; /* 移除下划线 */
+    border-radius: 5px;
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+.choice:hover {
+    background-color: #ccc; /* 鼠标悬停时改变背景色 */
+}
+.list-container {
+    width: 1000px; /* 列表容器的宽度 */
+    height: 600px; /* 列表容器的高度 */
+    overflow: auto; /* 当内容超出时显示滚动条 */
+    padding: 10px; /* 内边距 */
+    background-color: #728ed981;
+    border: 0px solid #8de89c;
+    border-radius: 10px;
+}
+.list-item {
+    margin-bottom: 20px; /* 列表项之间的间距 */
+}
+
+.lft_sec{
+    
+
+}
+
+.avatar{
+    height: 200px;
+    width: 200px;
+}
+
+.box{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+section {
+    max-width: 800px;
+
+}
+h2 {
+    color: #333;
+}
+p {
+    line-height: 1.6;
+}
+#toggle-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 40px;
+}
+#redbird{
+    position: fixed;
+    top: 0px;
+    right: 50px;
+    font-size: 30px;
+    
+}
+
+.article-list {
+    list-style: none; /* 移除列表样式 */
+    padding: 0;
+    margin: 0;
+}
+.article-item {
+    border-bottom: 1px solid #ccc; /* 底部边框 */
+    padding: 20px;
+}
+.article-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+.article-meta {
+    font-size: 14px;
+    color: #666;
+}
+.article-content {
+    margin-top: 10px;
+    color: #333;
+}
+#dialog {
+    position: fixed;
+    top: 10px;
+    right: 200px;
+    width: 100px;
+    height: 50px;
+    background-color: #b7dfe3;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    font-size: 20px;
+    display: none; /* 初始隐藏 */
+    text-align: center;
+}
+#sdialog{
+    position: fixed;
+    top: 30px;
+    right: 170px;
+    width: 20px;
+    height: 20px;
+    background-color: #c7e2e5;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    line-height: 100px;
+    font-size: 20px;
+    display: none; /* 初始隐藏 */
+}
+#blackbird{
+    position: fixed;
+    top: 0px;
+    right: 250px;
+    font-size: 30px;
+}
+#blackdialog {
+    position: fixed;
+    top: 40px;
+    right: 200px;
+    width: 150px;
+    height: 55px;
+    padding-top: 20px;
+    background-color: #b7dfe3;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    font-size: 15px;
+    display: none; /* 初始隐藏 */
+    text-align: center;
+}

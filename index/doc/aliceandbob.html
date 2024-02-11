@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码文档</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            font-size:x-large;
+            white-space: pre-wrap;
+        }
+        p{
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>leetcode刷题笔记:Alice and Bob Playing Flower Game</h1>
+    <p>难度：中等</p>
+    <h2>题目描述</h2>
+    <pre>
+Alice and Bob are playing a turn-based game on a circular field surrounded by flowers. The circle represents the field, and there are x flowers in the clockwise direction between Alice and Bob, and y flowers in the anti-clockwise direction between them.
+
+The game proceeds as follows:
+
+Alice takes the first turn.
+In each turn, a player must choose either the clockwise or anti-clockwise direction and pick one flower from that side.
+At the end of the turn, if there are no flowers left at all, the current player captures their opponent and wins the game.
+Given two integers, n and m, the task is to compute the number of possible pairs (x, y) that satisfy the conditions:
+
+Alice must win the game according to the described rules.
+The number of flowers x in the clockwise direction must be in the range [1,n].
+The number of flowers y in the anti-clockwise direction must be in the range [1,m].
+Return the number of possible pairs (x, y) that satisfy the conditions mentioned in the statement.
+
+    
+
+Example 1:
+
+Input: n = 3, m = 2
+Output: 3
+Explanation: The following pairs satisfy conditions described in the statement: (1,2), (3,2), (2,1).
+Example 2:
+
+Input: n = 1, m = 1
+Output: 0
+Explanation: No pairs satisfy the conditions described in the statement.
+    
+
+Constraints:
+
+1 <= n, m <= 105
+    </pre>
+    <h2>示例代码</h2>
+    <pre><code class="cpp">
+class Solution {
+    public:
+        long long flowerGame(int n, int m) {
+            //it is so easy 
+            //只需要满足x+y为奇数即可,如果x是一个奇数，那么需要y是一个偶数，如果x是一个偶数，那么要求y是个奇数
+            //如果n是奇数，那么x可取n/2+1个奇数，n/2个偶数，如果n是偶数，那么可取n/2个奇数，n/2个偶数。m亦然
+            long long n_odd,n_even,m_odd,m_even;
+            if(n%2!=0)
+            {
+                n_odd=n/2+1;
+                n_even=n/2;
+            }
+            else
+            {
+                n_odd=n/2;
+                n_even=n/2;
+            }
+            if(m%2!=0)
+            {
+                m_odd=m/2+1;
+                m_even=m/2;
+            }
+            else
+            {
+                m_odd=m/2;
+                m_even=m/2;
+            }
+            //最终结果为x可取奇数的数量乘y可取偶数的数量加上x可取偶数的数量加上y可取奇数的数量
+            long long rst=n_odd*m_even+n_even*m_odd;
+            return rst;
+                
+            
+            
+        }
+    };
+    </code></pre>
+    <h2>代码说明</h2>
+    <p> <code></code></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

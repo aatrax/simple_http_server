@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码文档</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            font-size:x-large;
+            white-space: pre-wrap;
+        }
+        p{
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>leetcode刷题笔记:Find the Maximum Number of Elements in Subset</h1>
+    <p>难度：中等</p>
+    <h2>题目描述</h2>
+    <pre>
+    You are given an array of positive integers nums.
+You need to select a subsetof nums which satisfies the following condition:
+
+You can place the selected elements in a 0-indexed array such that it follows the pattern: [x, x2, x4, ..., xk/2, xk, xk/2, ..., x4, x2, x] (Note that k can be be any non-negative power of 2). For example, [2, 4, 16, 4, 2] and [3, 9, 3] follow the pattern while [2, 4, 8, 4, 2] does not.
+Return the maximum number of elements in a subset that satisfies these conditions.
+
+ 
+
+Example 1:
+
+Input: nums = [5,4,1,2,2]
+Output: 3
+Explanation: We can select the subset {4,2,2}, which can be placed in the array as [2,4,2] which follows the pattern and 22 == 4. Hence the answer is 3.
+Example 2:
+
+Input: nums = [1,3,2,4]
+Output: 1
+Explanation: We can select the subset {1}, which can be placed in the array as [1] which follows the pattern. Hence the answer is 1. Note that we could have also selected the subsets {2}, {3}, or {4}, there may be multiple subsets which provide the same answer. 
+ 
+
+Constraints:
+
+2 <= nums.length <= 105
+1 <= nums[i] <= 109
+    </pre>
+    <h2>示例代码</h2>
+    <pre><code class="cpp">
+#include &lt;limits&gt;
+#include &lt;cmath&gt;
+class Solution {
+public:
+    int rcv_fnd(int idx, vector&lt;int&gt;&amp; nums) {
+        if (idx == nums.size() - 1)
+            return -1;
+        if (nums[idx] != nums[idx + 1])
+            return -1;
+        if (numeric_limits&lt;int&gt;::max() / nums[idx] &lt; nums[idx]) 
+            // 溢出可能发生，返回 -1 或其他处理方式
+            return -1;
+        int tmp_num = nums[idx] * nums[idx];
+        for (int i = idx + 2; i &lt; nums.size(); i++) {
+            if (nums[i] == tmp_num)
+                return i;
+            if (nums[i] &gt; tmp_num)
+                return -1;
+        } 
+        return -1;
+    }
+    
+    int maximumLength(vector&lt;int&gt;&amp; nums) {
+        unordered_map&lt;int, int&gt; is_chk;
+        int rst = 1;
+        for (int i = 0; i &lt; nums.size(); i++) {
+            is_chk[i] = 0;
+        }
+        sort(nums.begin(), nums.end());
+        int max_min = ceil(sqrt(*max_element(nums.begin(), nums.end())));
+        int div_tms = 1;
+        for (int i = 0; i &lt; nums.size(); i++) {
+            if (nums[i] &gt; max_min)
+                continue;
+            if (is_chk[i] == 1)
+                continue;
+            int tmp_rst = 0;
+            int tmp_idx = i;
+            while (tmp_idx != -1) {
+                is_chk[tmp_idx] = 1;
+                tmp_idx = rcv_fnd(tmp_idx, nums);
+                tmp_rst++;               
+            }
+            while (tmp_rst &gt; div_tms) {
+                max_min = ceil(sqrt(max_min));
+                div_tms++;
+            }
+            tmp_rst = tmp_rst * 2 - 1;
+            if (tmp_rst &gt; rst)
+                rst = tmp_rst;
+        }
+        return rst;
+    }
+};
+    </code></pre>
+    <h2>代码说明</h2>
+    <p> <code>name</code></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

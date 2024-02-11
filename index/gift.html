@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image Template</title>
+    <style>
+        body{
+            background-image: url('pinksky.jpg');
+            height: 1000px;
+        }
+        .beauty {
+            
+            height: 100%; /* 设置容器的高度为整个视口的高度 */
+            width: 60%;
+            margin-top: 0;
+            margin-left: 250px;
+        }
+        #blackbird{
+            position: fixed;
+            top: 40px;
+            left: 10px;
+            font-size: 30px;
+        }
+        #blackdialog {
+            position: fixed;
+            top: 40px;
+            left: 50px;
+            width: 150px;
+            height: 55px;
+            background-color: #b7dfe3;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            font-size: 15px;
+            display: inline; /* 初始隐藏 */
+            text-align: center;
+            align-items: center; /* 垂直居中 */
+            padding-top: 20px;
+        }
+        .gorgeous-border {
+            border: 5px solid #d9e40a; /* 边框样式和颜色 */
+            border-radius: 20px; /* 边框圆角 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 边框阴影 */
+            padding: 10px; /* 内边距 */
+            height: 380px;
+            width: 400px;
+            position: fixed; /* 固定在屏幕中间 */
+            top: 50%; /* 顶部距离为屏幕高度的一半 */
+            left: 50%; /* 左侧距离为屏幕宽度的一半 */
+            max-width: 100%; /* 图片最大宽度为边框宽度 */
+            max-height: 100%; /* 图片最大高度为边框高度 */
+            box-sizing: border-box; /* 包括边框和内边距在内的盒模型 */
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+    .pic{
+        height: 350px;
+        width:370px;
+        }
+    .couplets {
+            position: fixed;
+            height: 400px;
+            width: 600px;
+            margin-top: 50px;
+            font-family: KaiTi, sans-serif; /* 使用楷体 */
+            top: 50%; /* 顶部距离为屏幕高度的一半 */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        .left,.right{
+            color: gold;
+            border:3px solid gold;
+            border-radius: 20px;
+        }
+        .left {
+            position: absolute;
+            background-color: #cc0000;
+            font-size: 40px;
+            height: 200px;
+            width: 50px;
+            top: 20px;
+            left: 10px;
+        }
+        .right {
+            position: absolute;
+            font-size: 40px;
+            background-color: #cc0000;
+            height: 200px;
+            width: 50px;
+            top: 20px;
+            right: 10px;
+        }
+
+        /* 如果你想要添加自定义样式，可以在这里添加 */
+    </style>
+</head>
+<body>
+    <img class="beauty" src="beauty.jpg">
+    <img id="blackbird" src="static_blackbird.gif">
+    <div id="blackdialog"></div>
+    <div class="gorgeous-border">
+        <img src="beautiful.jpg" class="pic">
+    </div>
+    <div class="couplets">
+        <div class="left">新年快乐</div>
+        <div class="right">欧阳文慧</div>
+    </div>
+    <!-- 这里是你的内容，你可以在这里添加其他元素或文本 -->
+    <script>
+        let num=0;//说话次数
+        let idint;
+        let beaut_per=document.querySelector('.gorgeous-border');
+        let coup=document.querySelector('.couplets');
+        let rightcoup=document.querySelector('.right');
+        let picsrc=document.querySelector('.pic');
+        dialog=document.querySelector('#blackdialog');
+        idint=setInterval(function(){
+            dialog.style.display='inline';
+            if(num==0){
+                dialog.innerHTML='你是个有品位的人，我也喜欢9';
+                num++;
+                return;
+            }
+            if(num==1){
+                dialog.innerHTML='你让我很开心。。也许你也救人了';
+                num++;
+                return;
+            }
+            if(num==2){
+                dialog.innerHTML='我的大脑的神经感觉重新连接。。';
+                num++;
+                return;
+            }
+            if(num==3){
+                dialog.innerHTML='我送你份礼物，密码是四个字母';
+                num++;
+                return;
+            }
+            if(num==4){
+                pass();
+                clearInterval(idint);
+                num++;
+                return;
+            }
+        },4000)
+        function pass()
+        {
+            while(true){
+                let inputPassword = prompt("请输入密码：");
+
+                // 检查输入的密码是否正确
+                if (inputPassword == 'oywh') {
+                    alert("密码正确！"); // 提示密码正确
+                    beaut_per.style.display='inline';
+                    coup.style.display='inline';
+                    dialog.innerHTML='恭喜你';
+                    break; // 跳出循环
+                } 
+                if (inputPassword == 'bzc') {
+                    alert("密码正确！"); // 提示密码正确
+                    rightcoup.innerHTML='祝卞梓潮';
+                    picsrc.src='newyear.jpg';
+                    beaut_per.style.display='inline';
+                    coup.style.display='inline';
+                    dialog.innerHTML='恭喜你';
+                    break; // 跳出循环
+                } 
+                if (inputPassword == 'zfyl') {
+                    alert("密码正确！"); // 提示密码正确
+                    rightcoup.innerHTML='祝余雷哥';
+                    picsrc.src='newyear.jpg';
+                    beaut_per.style.display='inline';
+                    coup.style.display='inline';
+                    dialog.innerHTML='恭喜你';
+                    break; // 跳出循环
+                } else {
+                    alert("密码错误，请重试。"); // 提示密码错误
+                }
+            }
+        }
+    </script>
+</body>
+</html>

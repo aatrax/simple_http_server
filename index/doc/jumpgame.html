@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码文档</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            font-size:x-large;
+            white-space: pre-wrap;
+        }
+        p{
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>leetcode刷题笔记:Jump Game</h1>
+    <p>难度：中等</p>
+    <h2>题目描述</h2>
+    <pre>
+You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+Return true if you can reach the last index, or false otherwise.
+
+    
+
+Example 1:
+
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+Example 2:
+
+Input: nums = [3,2,1,0,4]
+Output: false
+Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+    
+
+Constraints:
+
+1 <= nums.length <= 104
+0 <= nums[i] <= 105
+    </pre>
+    <h2>我的代码</h2>
+    <pre><code class="cpp">
+class Solution {
+    public:
+        bool canJump(vector&lt;int&gt;&amp; nums) {
+            //重点在于数组中的0，只需要保证在每个0元素位置前存在一个位置能跳到0的后面，就可保证
+            //最终可以跳到终点
+            if (nums.size() == 1)
+                return true;
+            auto it_zero = std::find(nums.begin(), nums.end() - 1, 0);
+
+            while (it_zero != nums.end() - 1) {
+                auto it = it_zero;
+
+                if (it == nums.begin())
+                    return false; // 第一个位置就是0
+
+                while (true) {
+                    if (std::distance(it, it_zero) &lt; *it)
+                        break;
+                    if (it == nums.begin())
+                        return false; // 从begin()到零的位置都不能满足条件
+                    it--;
+                }
+                if (it_zero == nums.end() - 2)
+                    return true;
+                it_zero = std::find(it_zero + 1, nums.end() - 1, 0);
+            }
+
+            return true; // 已经查找了全部的0，都满足条件
+        }
+    };
+    </code></pre>
+    <h2>代码说明</h2>
+    <p> <code></code></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
